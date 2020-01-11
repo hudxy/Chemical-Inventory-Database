@@ -1,0 +1,19 @@
+<h1>Update {{container_type_name}}:</h1>
+<div class = "container">
+    <div class = "row">
+        <div class = "col-4 mx-auto mt-1" id = "formContainer">
+            <form id = "updateContainerType" action="/containerType/{{container_type.container_type_id}}" method="post">
+                <h1>Update Container Type</h1>
+                <p>Please enter the information below to update a container type. </p>
+                <p>Please Note: Duplicate Names are not permitted!</p>
+                Container Type Name: </br>
+                <input type = "text" name = "containerTypeName" id = "containerTypeName" value="{{container_type.container_type_name}}"> </br></br>
+                Container Max Volume: </br>
+                <input type = "text" name = "containerTypeMaxVolume" id = "containerTypeMaxVolume" value="{{container_type.container_max_volume}}"> </br></br>
+                <button>Update</button>
+                </br></br>
+                <button><a href="../containerType">Back</a></button>
+            </form></br>
+        </div>
+    </div>
+</div>

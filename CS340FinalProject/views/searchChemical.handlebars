@@ -1,0 +1,22 @@
+<div class = "container">
+        <div class = "row justify-content-center">
+            <h1>Chemical Inventory</h1>
+        </div>
+        <div class = "row justify-content-center">
+            <!--Example table-->
+            <table id = "table_chemicalInventory" border = "1px solid black">
+                <tr>
+                    <th>Chemical</th>
+                    <th>Container Barcode</th>
+                </tr>
+                {{#each searchContainer}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{container_barcode}}</td>
+                    <td><button onclick="window.location.href = '/chemical/{{chemical_id}}';">Edit Chemical</a></td>
+                    <td><button onclick="window.location.href = '/container/{{container_barcode}}';">Edit Container</a></td>                
+                </tr>
+                {{/each}}
+            </table></br>
+        </div>
+    </div>

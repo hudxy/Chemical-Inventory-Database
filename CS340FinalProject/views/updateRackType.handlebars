@@ -1,0 +1,25 @@
+<h1>Update {{rack_type_name}}:</h1>
+<div class = "container">
+    <div class = "row">
+        <div class = "col-4 mx-auto mt-1" id = "formContainer">
+            <form id = "updateRackType" action="/rackType/{{rack_type.rack_type_id}}" method="post">
+                <h1>Update Rack Type</h1>
+                <p>Please enter the information below to update a rack type. </p>
+                <p>Please Note: Duplicate Names are not permitted!</p>
+                Container Type Name: </br>
+                <input type = "text" name = "rackTypeName" id = "rackTypeName" value="{{rack_type.rack_type_name}}"> </br></br>
+                Container Max Volume: </br>
+                <input type = "text" name = "maxCapacity" id = "maxCapacity" value="{{rack_type.max_capacity}}"> </br></br>
+                Allowed Labware Type: </br>
+                <select name="allowedLabwareType">
+                  {{#each container_type}}
+                    <option value="{{container_type_id}}">{{container_type_name}}</option>
+                  {{/each}}
+                </select> </br></br>
+                <button>Update</button>
+                </br></br>
+                <button><a href="../rackType">Back</a></button>
+            </form></br>
+        </div>
+    </div>
+</div>

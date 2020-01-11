@@ -1,0 +1,80 @@
+
+    <div class="jumbotron">
+            <div class = "rackType">
+                <h1 class ="display-4">Rack Type</h1>
+            </div>
+        </div>
+    </div>
+    <div class = "container">
+        <div class = "row justify-content-center">
+            <div class = "col-md-4 offset-md" id = "formContainer">
+                <form id = "form_AddRackType" action="/rackType" method="post">
+                    <h1>Add Rack Type</h1>
+                    <p>Please enter the information below to register a new rack type.</p>
+                    Rack Type Name: </br>
+                    <input type = "text" name = "rackTypeName" id = "rackTypeName"> </br></br>
+                    Max Capacity: </br>
+                    <input type = "number" name = "maxCapacity" id = "maxCapacity"> </br></br>
+                    Allowed Labware Type: </br>
+                    <select name="labwareType">
+                      {{#each container_type}}
+                        <option value="{{container_type_id}}">{{container_type_name}}</option>
+                      {{/each}}
+                    </select> </br></br>
+                    <input type = "submit" value = "Register" id = "submit_addRackType">
+                </form></br>
+            </div>
+        </div>
+    </div>
+
+    </br>
+
+    <div class = "container">
+        <div class = "row justify-content-center">
+            <h1>Registered Rack Types</h1>
+        </div>
+        </br>
+        <div class = "row justify-content-center">
+          <table id = "table_rackType" border = 1px solid black>
+              <tr>
+                  <th>Rack Type ID</th>
+                  <th>Rack Type Name</th>
+                  <th>Max Capacity</th>
+                  <th>Allowed Labware Type</th>
+              </tr>
+              {{#each rackType}}
+              <tr>
+                  <td>{{rack_type_id}}</td>
+                  <td>{{rack_type_name}}</td>
+                  <td>{{max_capacity}}</td>
+                  <td>{{container_type_name}}</td>
+                  <td><button onclick="window.location.href = 'rackType/{{rack_type_id}}';">Update</a></td>
+              </tr>
+              {{/each}}
+
+            <!--Example table-->
+            <!-- TEST DATA STATIC
+            <table id = "table_rackType" border = 1px solid black>
+                <tr>
+                    <th>Rack Type ID</th>
+                    <th>Rack Type Name</th>
+                    <th>Max Capacity</th>
+                    <th>Allowed Labware Type</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1 ML VIAL RACK</td>
+                    <td>96</td>
+                    <td>1 ML VIAL</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>4 ML VIAL RACK</td>
+                    <td>24</td>
+                    <td>4 ML VIAL</td>
+                </tr>
+                -->
+            </table></br>
+        </div>
+    </div>
+    </br>

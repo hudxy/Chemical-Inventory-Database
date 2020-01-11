@@ -1,0 +1,110 @@
+
+    <div class="jumbotron">
+            <div class = "container">
+                <h1 class ="display-4">Container</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-4 mx-auto mt-1" id = "formContainer">
+                <form id = "form_AddContainer" action = "/container" method = "post">
+                    <h1>Register Container</h1>
+                    <p>Please enter the information below to add a new container.</p>
+                    Container Barcode: </br>
+                    <input type = "text" name = "containerBarcode" id = "containerBarcode"> </br></br>
+                    Container Type Name: </br>
+                    <!--Populate the options based on what container types are registered in the database-->
+                    <select name="containerType">
+                      {{#each container_type}}
+                      <option value="{{container_type_id}}">{{container_type_name}}</option>
+                      {{/each}}
+                    </select> </br></br>
+                    <!--Concentration: </br>
+                    <input type = "number" step="0.01" min="0" name = "concentration" id = "concentration"> uM </br></br>
+                    Amount: </br>
+                    <input type = "number" step="0.01" min="0" name = "amount" id = "amount"> uL </br></br>
+                    Rack: </br>
+                    <select name="rack">
+                      <option value=""></option>
+                      {{#each rack}}
+                        <option value="{{rack_barcode}}">{{rack_barcode}}</option>
+                      {{/each}}
+                    </select> </br></br>-->
+                    <input type = "submit" value = "Register" id = "submit_addContainer">
+                </form></br>
+            </div>
+
+            <div class = "col-4 mx-auto mt-1" id = "formContainer">
+                <form id = "addChems" action = "/container/addChems" method = "post">
+                    <h1>Add Chemical to a Container</h1>
+                    <p>Please enter the container barcode and fill out the information below.</p>
+                    Container Barcode: </br>
+                    <input list = "destContainer" name="containerBarcode">
+                    <datalist id = "destContainer">
+                      {{#each container}}
+                      <option value="{{container_barcode}}">{{container_barcode}}</option>
+                      {{/each}}
+                    </datalist> </br></br>
+                    Chemical Name: </br>
+                    <input list = "listChemical" name = "listChemical">
+                    <datalist id = "listChemical">
+                        {{#each chemical}}
+                        <option value="{{name}}">{{name}}</option>
+                        {{/each}}
+                    </datalist>
+                    </br></br>
+                    Concentration: </br>
+                    <input type = "number" step="0.01" min="0" name = "concentration" id = "concentration"> uM </br></br>
+                    Amount: </br>
+                    <input type = "number" step="0.01" min="0" name = "amount" id = "amount"> uL </br></br>
+                    <input type = "submit" value = "Submit" id = "submit_UpdateContainer">
+                </form></br>
+            </div>
+
+            <!--Commenting out. Do not need delete functionality for container
+            <div class = "col-4 mx-auto mt-1" id = "formContainer">
+                <form id = "form_deleteContainer">
+                    <h1>Delete Container</h1>
+                    <p>Please enter the container barcode you would like to remove.</p>
+                    Container Barcode: </br>
+                    <input type = "text" name = "deleteContainer" id = "deleteContainer"> </br></br>
+                    <input type = "submit" value = "Delete" id = submit_DeleteContainer>
+                </form>
+            </div>-->
+        </div>
+    </div>
+
+    </br>
+
+    <div class = "container">
+        <div class = "row justify-content-center">
+            <h1>Container Inventory </h1>
+        </div>
+        <div class = "row justify-content-center">
+            <!--Example table-->
+            <table id = "table_containerInventory" border = "1px solid black">
+                <tr>
+                    <th>Chemical</th>
+                    <th>Container Barcode</th>
+                    <th>Container Type Name</th>
+                    <th>Concentration (uM)</th>
+                    <th>Amount (uL)</th>
+                    <th>Within Rack</th>
+                </tr>
+                {{#each container}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{container_barcode}}</td>
+                    <td>{{container_type_name}}</td>
+                    <td>{{concentration_uM}}</td>
+                    <td>{{amount_uL}}</td>
+                    <td>{{rack_barcode}}</td>
+                    <td><button onclick="window.location.href = '/container/{{container_barcode}}';">Update</a></td>
+                </tr>
+                {{/each}}
+            </table></br>
+        </div>
+    </div>
+    </br>

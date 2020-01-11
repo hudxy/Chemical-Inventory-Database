@@ -1,0 +1,99 @@
+    <div class="jumbotron">
+			<div class = "container">
+				<h1 class ="display-4">Chemical</h1>
+			</div>
+        </div>
+    </div>
+
+    <!--Add new chemical-->
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-4 mx-auto mt-1" id = "formContainer">
+                <form id = "form_AddChemical" action="/chemical" method="post">
+                    <h1>Register New Chemical</h1>
+                    <p>Please enter the information below to register a new chemical. Enter a container barcode if necessary. </p>
+                    Chemical Name: </br>
+                    <input type = "text" name = "chemicalName" id = "chemicalName"> </br></br>
+                    Chemical Formula: </br>
+                    <input type = "text" name = "chemicalFormula" id = "chemicalFormula"> </br></br>
+                    Molecular Weight: </br>
+                    <input type = "number" step="0.01" min ="0" name = "molecularWeight" id = "molecularWeight"> </br></br>
+                    <!--Container Barcode (optional): <br>
+                    <input list = "barcodes" name="newContainerBarcode">
+                    <datalist id = "barcodes">
+                      <option value="">None</option>
+                      {{#each container}}
+                      <option value="{{container_barcode}}">{{container_barcode}}</option>
+                      {{/each}}
+                    </datalist>-->
+                    <input type = "Submit" value = "Register" id = "submit_addChemical">
+                </form></br>
+            </div>
+
+
+            <!--Search chemical in database based on chemical name or chemical formula-->
+            <div class = "col-4 mx-auto mt-1" id = "formContainer">
+                <form id = "form_SearchContainer" action="/chemical/searchChemical" method="get">
+                    <h1>Chemical Inventory Search</h1>
+                    <p>Enter a chemical name or chemical formula to view inventory.</p>
+                    Chemical Name: </br>
+                    <input type = "text" name = "searchName" id = "searchName"> </br></br>
+                    <input type = "submit" value = "Search" id = "submit_SearchContainer">
+                </form></br>
+            </div>
+
+            <!--
+            <div class = "col-4 mx-auto mt-1" id = "formContainer">
+                <form id = "form_AddContainer" action="/chemical" method="post">
+                    <h1>Move Chemical</h1>
+                    <p>Enter chemical id to move into a container.</p>
+                    Chemical Name: </br>
+                    <select name="moveChemicalID">
+                        <option value=""></option>
+                        {{#each chemical}}
+                        <option value="{{chemical_id}}">{{name}}</option>
+                        {{/each}}
+                    </select> </br></br>
+                    Container Barcode: </br>
+                    <select name="moveContainerBarcode">
+                        <option value=""></option>
+                        {{#each container}}
+                        <option value="{{container_barcode}}">{{container_barcode}}</option>
+                        {{/each}}
+                    </select> </br></br>
+                    <input type = "submit" value = "Move" id = "submit_moveChemical">
+                </form></br>
+            </div>-->
+        </div>
+    </div>
+
+    </br>
+
+    <div class = "container">
+        <div class = "row justify-content-center">
+            <h1>Chemical Inventory</h1>
+        </div>
+        <div class = "row justify-content-center">
+            <!--Example table-->
+            <table id = "table_chemicalInventory" border = "1px solid black">
+                <tr>
+                    <th>Chemical ID</th>
+                    <th>Chemical Name</th>
+                    <th>Chemical Formula</th>
+                    <th>Molecular Weight</th>
+                </tr>
+                {{#each chemical}}
+                <tr>
+                    <td>{{chemical_id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{chemical_formula}}</td>
+                    <td>{{molecular_weight}}</td>
+                    <td><button onclick="window.location.href = 'chemical/{{chemical_id}}';">Update</a></td>
+                    <td><button onclick="deleteChemical({{chemical_id}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </table>
+          </br>
+        </div>
+    </div>
+</br>

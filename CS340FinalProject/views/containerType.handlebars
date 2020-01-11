@@ -1,0 +1,70 @@
+
+    <div class="jumbotron">
+            <div class = "container">
+                <h1 class ="display-4">Container Type</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class = "container">
+        <div class = "row justify-content-center">
+            <div class = "col-md-4 offset-md" id = "formContainer">
+                <form id = "form_AddContainerType" action="/containerType" method="post">
+                    <h1>Add Container Type</h1>
+                    <p>Please enter the information below to register a new container type.</p>
+                    <p>Please Note: Duplicate Names are not permitted!</p>
+                    Container Type Name: </br>
+                    <input type = "text" name = "containerTypeName" id = "containerTypeName"> </br></br>
+                    Container Max Volume: </br>
+                    <input type = "number" name = "maxVolume" id = "maxVolume"> uL </br></br>
+                    <input type = "submit" value = "Register" id = "submit_addContainerType">
+                </form></br>
+            </div>
+        </div>
+    </div>
+
+    </br>
+
+    <div class = "container">
+        <div class = "row justify-content-center">
+            <h1>Registered Container Types</h1>
+        </div>
+        <div class = "row justify-content-center">
+          <table id = "table_containerType" border = 1px solid black>
+              <tr>
+                  <th>Container Type ID</th>
+                  <th>Container Type Name</th>
+                  <th>Container Max Volume (uL)</th>
+              </tr>
+              {{#each containerType}}
+              <tr>
+                  <td>{{container_type_id}}</td>
+                  <td>{{container_type_name}}</td>
+                  <td>{{container_max_volume}}</td>
+                  <td><button onclick="window.location.href = 'containerType/{{container_type_id}}';">Update</a></td>
+                  
+              </tr>
+              {{/each}}
+            </table></br>
+            <!--Example table-->
+            <!-- TEST DATA STATIC
+            <table id = "table_containerType" border = 1px solid black>
+                <tr>
+                    <th>Container Type ID</th>
+                    <th>Container Type Name</th>
+                    <th>Container Max Volume (uL)</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1 ML VIAL</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>4 ML VIAL</td>
+                    <td>4000</td>
+                </tr>
+            </table></br>
+          -->
+        </div>
+    </br>

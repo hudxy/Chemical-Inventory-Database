@@ -1,0 +1,137 @@
+
+    <div class="jumbotron">
+            <div class = "container">
+                <h1 class ="display-4">Rack</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-4 mx-auto mt-1" id = "formContainer">
+                <form id = "form_AddRack" action="/rack" method="post">
+                    <h1>Add Rack</h1>
+                    Rack Barcode: </br>
+                    <input type = "text" name = "rackBarcode" id = "rackBarcode"> </br></br>
+                    Rack Type Name: </br>
+                    <!--Populate the options based on what rack types are registered in the database-->
+                    <select name="rackType">
+                      {{#each rackType}}
+                        <option value="{{rack_type_id}}">{{rack_type_name}}</option>
+                      {{/each}}
+                    </select> </br></br>
+                    <input type = "submit" value = "Submit" id = "submit_addRack">
+                </form> </br>
+            </div>
+
+            <!--<div class = "col-4 mx-auto mt-1" id = "formContainer">
+                <form id = "addContainer" action="/rack/addContainer" method="post">
+                    <h1>Add Containers to a Rack</h1>
+                    Rack Barcode: </br>
+                    <select name="rackBarcode">
+                      {{#each rack}}
+                      <option value="{{rack_barcode}}">{{rack_barcode}}</option>
+                      {{/each}}
+                    </select> </br></br>
+                    Containers: </br>
+                    {{#each container}}
+                    <input type="checkbox" name="container[]" value="{{container_barcode}}">{{container_barcode}}
+                    {{/each}}
+                  </br></br>
+                    <input type = "submit" value = "Submit" id = "submit_viewRack">
+                  </form>
+                  </br>
+            </div>-->
+
+            <div class = "col-4 mx-auto mt-1" id = "formContainer">
+                <form id = "moveContainer" action = "/rack/moveContainer" method = "post">
+                    <h1>Add Container to a Rack</h1>
+                    <p>Please enter the rack barcode and fill out the information below.</p>
+                    Rack Barcode: </br>
+                    <input list = "destRack" name="destRack">
+                    <datalist id = "destRack">
+                      {{#each rack}}
+                      <option value="{{rack_barcode}}">{{rack_barcode}}</option>
+                      {{/each}}
+                    </datalist> </br></br>
+                    Container Barcode: </br>
+                    <input list = "listContainer" name = "listContainer">
+                    <datalist id = "listContainer">
+                        {{#each container}}
+                        <option value="{{container_barcode}}">{{container_barcode}}</option>
+                        {{/each}}
+                    </datalist>
+                    </br></br>
+                    Rack Location: </br>
+                    <input type = "text" name = "rackLocation" id = "rackLocation"> </br></br>
+                    <input type = "submit" value = "Submit" id = "submit_MoveContainerToRack">
+                </form></br>
+            </div>
+
+            <div class = "col-4 mx-auto mt-1" id = "formContainer">
+                <form id = "form_SearchContainer" action="/rack/searchRack" method="get">
+                    <h1>Rack Inventory Search</h1>
+                    <p>Enter a rack barcode to view inventory.</p>
+                    Rack Barcode: </br>
+                    <input type = "text" name = "searchName" id = "searchName"> </br></br>
+                    <input type = "submit" value = "Search" id = "submit_SearchContainer">
+                </form></br>
+            </div>
+        </div>
+    </div>
+
+    <div class = "container">
+        </br>
+        <div class = "row justify-content-center">
+            <h1>Rack Contents </h1>
+        </div>
+        <div class = "row justify-content-center">
+          <table id = "table_rackInventory" border = 1px solid black>
+            <tr>
+                <th>Rack Barcode</th>
+                <th>Rack Type Name</th>
+                <th>Cells Occupied/Max Capacity</th>
+            </tr>
+            {{#each rack}}
+            <tr>
+                <td>{{rack_barcode}}</td>
+                <td>{{rack_type_name}}</td>
+                <td>   {{cells_occupied}}/{{max_capacity}}</td>
+                <td><button onclick="window.location.href = 'rack/{{rack_barcode}}';">Update</a></td>
+            </tr>
+            {{/each}}
+          </table></br></br></br>
+
+            <!--Example table-->
+            <!-- TEST DATA STATIC
+            <table id = "table_rackInventory" border = 1px solid black>
+                <tr>
+                    <th>Rack Location</th>
+                    <th>Container Barcode</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>A1</td>
+                    <td>HL0000002</td>
+                    <td><button type = "button"> Fill </button><td>
+                </tr>
+                <tr>
+                    <td>A2</td>
+                    <td></td>
+                    <td><button type = "button"> Fill </button><td>
+                </tr>
+                <tr>
+                    <td>A3</td>
+                    <td>HL0000004</td>
+                    <td><button type = "button"> Fill </button><td>
+                </tr>
+                <tr>
+                    <td>A4</td>
+                    <td></td>
+                    <td><button type = "button"> Fill </button><td>
+                </tr>
+
+            </table></br>
+              -->
+        </div>
+    </div>

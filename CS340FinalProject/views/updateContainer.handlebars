@@ -1,0 +1,36 @@
+        </br>
+        <div class = "container">
+            <div class = "row">
+                <div class = "col-4 mx-auto mt-1" id = "formContainer">
+                    <form id = "form_AddContainer" action = "/container/{{container.container_barcode}}" method = "post">
+                        <h1>Update Container</h1>
+                        <p>Please enter the information below to update a container.</p>
+                        Container Barcode: {{container.container_barcode}}</br>
+                        </br>
+                        Container Type Name: </br>
+                        <!--Populate the options based on what container types are registered in the database-->
+                        <select name="containerType">
+                          {{#each container_type}}
+                          <option value="{{container_type_id}}">{{container_type_name}}</option>
+                          {{/each}}
+                        </select> </br></br>
+                        Concentration: </br>
+                        <input type = "number" step="0.01" min="0" name = "concentration" id = "concentration" value="{{container.concentration_uM}}"> uM </br></br>
+                        Amount: </br>
+                        <input type = "number" step="0.01" min="0" name = "amount" id = "amount" value="{{container.amount_uL}}"> uL </br></br>
+                        Rack: </br>
+                        <select name="rack">
+                          <option value=""></option>
+                          {{#each rack}}
+                            <option value="{{rack_barcode}}">{{rack_barcode}}</option>
+                          {{/each}}
+                        </select> </br></br>
+                        <button type="submit">Update</button>
+                        </br></br>
+                        <button><a href="../container">Back</a></button>
+                    </form></br>
+                </div>
+            </div>
+          </div>
+          </br> 
+            
